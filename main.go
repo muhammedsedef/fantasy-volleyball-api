@@ -4,7 +4,7 @@ import (
 	configuration "fantasy-volleyball-api/appconfig"
 	"fantasy-volleyball-api/internal/fantasy-volleyball-api-command-service/application/controller"
 	"fantasy-volleyball-api/internal/fantasy-volleyball-api-command-service/application/handler/user/create"
-	repository "fantasy-volleyball-api/internal/fantasy-volleyball-api-command-service/application/repository/user"
+	"fantasy-volleyball-api/internal/fantasy-volleyball-api-command-service/application/repository/user"
 	server "fantasy-volleyball-api/pkg"
 	"fantasy-volleyball-api/pkg/couchbase"
 	"github.com/gin-gonic/gin"

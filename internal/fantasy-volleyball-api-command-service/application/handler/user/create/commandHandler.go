@@ -3,7 +3,7 @@ package create
 import (
 	"context"
 	"errors"
-	repository "fantasy-volleyball-api/internal/fantasy-volleyball-api-command-service/application/repository/user"
+	"fantasy-volleyball-api/internal/fantasy-volleyball-api-command-service/application/repository/user"
 	"fantasy-volleyball-api/internal/fantasy-volleyball-api-command-service/domain"
 	"fantasy-volleyball-api/pkg/utils"
 )
