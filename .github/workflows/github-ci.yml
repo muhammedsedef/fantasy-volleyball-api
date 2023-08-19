@@ -18,6 +18,9 @@ jobs:
           
       - name: Install Dependencies
         run: go get -v -t -d ./...  
+
+      - name: Run Golint
+        run: golint ./...
           
       - name: Build
         run: go build ./...
