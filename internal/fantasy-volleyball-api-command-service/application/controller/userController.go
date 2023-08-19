@@ -23,6 +23,7 @@ func NewUserController(commandHandler create.IUserCreateCommandHandler) IUserCon
 }
 
 func (controller userController) CreateUser(ctx *gin.Context) {
+	fmt.Println("hello controller")
 	var createUserRequest request.CreateUserRequest
 
 	err := ctx.BindJSON(&createUserRequest)
