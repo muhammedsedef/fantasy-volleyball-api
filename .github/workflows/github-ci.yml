@@ -17,14 +17,10 @@ jobs:
           go-version: 1.18 
           
       - name: Install Dependencies
-        run: |
-          go get -v -t -d ./...
-          go get -u golang.org/x/lint/golint
-
+        run: go get -v -t -d ./... | go get -u golang.org/x/lint/golint
+          
       - name: Run vet & lint
-        run: |   
-          go vet .  
-          golint .
+        run: go vet . | golint .   
           
       - name: Build
         run: go build ./...
