@@ -1,5 +1,7 @@
 package configuration
 
+// Server
+var Env = "local"
 var Port = "8080"
 
 // Couchbase

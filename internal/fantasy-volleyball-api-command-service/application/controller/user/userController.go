@@ -1,11 +1,13 @@
-package controller
+package user
 
 import (
-	"fantasy-volleyball-api/internal/fantasy-volleyball-api-command-service/application/controller/request"
+	"fantasy-volleyball-api/internal/fantasy-volleyball-api-command-service/application/controller/user/request"
 	"fantasy-volleyball-api/internal/fantasy-volleyball-api-command-service/application/handler/user/create"
+	logger "fantasy-volleyball-api/pkg/log"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"reflect"
 )
 
 type IUserController interface {
@@ -14,16 +16,17 @@ type IUserController interface {
 
 type userController struct {
 	commandHandler create.IUserCreateCommandHandler
+	logger         logger.Logger
 }
 
 func NewUserController(commandHandler create.IUserCreateCommandHandler) IUserController {
-	return userController{
+	return &userController{
 		commandHandler: commandHandler,
+		logger:         logger.GetLogger(reflect.TypeOf((*userController)(nil))),
 	}
 }
 
-func (controller userController) CreateUser(ctx *gin.Context) {
-	fmt.Println("hello controller")
+func (controller *userController) CreateUser(ctx *gin.Context) {
 	var createUserRequest request.CreateUserRequest
 
 	err := ctx.BindJSON(&createUserRequest)
@@ -32,6 +35,9 @@ func (controller userController) CreateUser(ctx *gin.Context) {
 		ctx.JSON(http.StatusInternalServerError, nil)
 		return
 	}
+
+	controller.logger.InfoWithContext(ctx, "userController.CreateUser INFO - Started with request: %#v", createUserRequest)
+
 	err = controller.commandHandler.Handle(ctx, createUserRequest.ToCommand())
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, err.Error())

@@ -36,6 +36,8 @@ func (s *server) StartHttpServer() {
 		fmt.Println("cannot start server.", err)
 		panic("cannot start server")
 	}
+
+	fmt.Println("Server is running on port: ", configuration.Port)
 }
 
 func gracefulShutdown(srv *http.Server) {
